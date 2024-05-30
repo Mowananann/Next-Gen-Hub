@@ -1,0 +1,506 @@
+wait(2)
+
+local ScreenGui = Instance.new("ScreenGui")
+local Ping = Instance.new("TextLabel")
+
+
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Ping.Name = "Ping"
+Ping.Parent = ScreenGui
+Ping.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Ping.BackgroundTransparency = 1.000
+Ping.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Ping.Position = UDim2.new(0.1, 0, 0, 0)
+Ping.Size = UDim2.new(0, 125, 0, 25)
+Ping.Font = Enum.Font.SourceSans
+Ping.TextColor3 = Color3.fromRGB(255, 255, 255)
+Ping.TextScaled = true
+Ping.TextSize = 14.000
+Ping.TextWrapped = true
+
+local script = Instance.new('LocalScript', Ping)
+local RunService = game:GetService("RunService")
+
+RunService.RenderStepped:Connect(function() 
+    local pingValue = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString()
+    script.Parent.Text = ("Ping: " .. pingValue) 
+end)
+
+local function rgb()
+    local counter = 0
+    while true do
+        counter = counter + 1
+        local r = math.sin(counter / 20) * 127 + 128
+        local g = math.sin(counter / 20 + 2 * math.pi / 3) * 127 + 128
+        local b = math.sin(counter / 20 + 4 * math.pi / 3) * 127 + 128
+        script.Parent.TextColor3 = Color3.fromRGB(r, g, b)
+        wait(0.1)
+    end
+end
+
+spawn(rgb)
+
+local ScreenGui = Instance.new("ScreenGui")
+local Fps = Instance.new("TextLabel")
+
+
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Fps.Name = "Fps"
+Fps.Parent = ScreenGui
+Fps.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Fps.BackgroundTransparency = 1.000
+Fps.Position = UDim2.new(0.786138654, 0, 0, 0)
+Fps.Size = UDim2.new(0, 125, 0, 25)
+Fps.Font = Enum.Font.SourceSans
+Fps.TextColor3 = Color3.fromRGB(255, 255, 255)
+Fps.TextScaled = true
+Fps.TextSize = 14.000
+Fps.TextWrapped = true
+
+
+local script = Instance.new('LocalScript', Fps)
+local RunService = game:GetService("RunService")
+
+RunService.RenderStepped:Connect(function(frame) -- This will fire every time a frame is rendered
+    script.Parent.Text = ("FPS: " .. math.round(1 / frame)) 
+end)
+
+local function rgb()
+    local counter = 0
+    while true do
+        counter = counter + 1
+        local r = math.sin(counter / 20) * 127 + 128
+        local g = math.sin(counter / 20 + 2 * math.pi / 3) * 127 + 128
+        local b = math.sin(counter / 20 + 4 * math.pi / 3) * 127 + 128
+        script.Parent.TextColor3 = Color3.fromRGB(r, g, b)
+        wait(0.1)
+    end
+end
+
+spawn(rgb)
+
+
+local soundId = "rbxassetid://8348496392"
+
+local sound = Instance.new("Sound")
+sound.SoundId = soundId
+sound.Parent = game.Workspace -- You can parent it wherever you like
+
+sound:Play()
+
+
+game:GetService("StarterGui"):SetCore("SendNotification", { 
+    Title = "Loaded successfully";
+    Text = "Enjoy ";
+    Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+    Duration = 10; -- set duration in seconds
+    Button1 = "IT DID LOAD";
+    Button2 = "IT DIDNT LOAD";
+    SoundId = "rbxassetid://1626996526";
+})
+
+    game.StarterGui:SetCore("SendNotification", {
+    Title = "Join my discord!";
+    Text = "Joining my discord would be a great help";
+    Icon = "http://www.roblox.com/asset/?id=12652726911";
+    Duration = "10";
+    Button1 = "Sure!";
+    Button2 = "Nah im good"
+})
+
+local Library = loadstring(game:HttpGet("https://pastebin.com/raw/kjAxK7hC"))();
+local Window = Library.CreateLib("NextGen Hub (BaconHub X & NewGen Hub)", "Serpent")
+local Tab = Window:NewTab("Credits")
+local Section = Tab:NewSection("Credits")
+Section:NewLabel("Made By The BaconBlitz Team")
+Section:NewLabel("ALSO THIS SCRIPT IS THE CONTINUATION OF")
+Section:NewLabel("BACONHUB")
+Section:NewButton("Join My discord!", "Pls pls pls -flamingo", function()
+    setclipboard("https://discord.com/invite/KdJrj2nEy5")
+end)
+local Section1 = Tab:NewSection("Update Logs!")
+local Tab1 = Window:NewTab("Main")
+local Section2 = Tab1:NewSection("Cool stuff ig")
+Section2:NewButton("OG NextGen (no more updates)", "ButtonInfo", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Mowananann/BaconHub-x/main/BaconHub-x"))()
+end)
+local Section3 = Tab1:NewSection("Admin Scripts!")
+Section3:NewButton("Infinite yeild", "Most well known admin script", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+Section3:NewButton("Fates Admin (recommended for pc)", "like i said recommended for pc dumbasses", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
+end)
+Section3:NewButton("Nameless Admin (recommended for mobile)", "nothing to say here xd", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/FilteringEnabled/NamelessAdmin/main/Source"))();
+end)
+Section3:NewButton("iv admin v3", "pretty good and cool", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/BloodyBurns/Hex/main/Iv%20Admin%20v3.lua"))()
+end)
+local Section4 = Tab1:NewSection("Useful Stuff")
+Section4:NewButton("KeyBoard", "UseFul for mobile players", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+end)
+Section4:NewButton("Rejoin", "self explanatory", function()
+    game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+end)
+Section4:NewButton("ServerHop", "Self explatanory", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/VduBT2nt"))()
+end)
+local Section5 = Tab1:NewSection("what do you want?")
+local Tab2 = Window:NewTab("Games")
+local Section6 = Tab2:NewSection("Scripts that can help in games (all made by me)")
+Section6:NewTextBox("Hitbox modifier", "cool thing", function(txt)
+    _G.HeadSize = tonumber(txt)
+    _G.Disabled = false  -- Ensure this is set to false so the function can run
+
+    game:GetService('RunService').RenderStepped:Connect(function()
+        if not _G.Disabled then  -- Use 'not' to check if it's false
+            for i, v in ipairs(game:GetService('Players'):GetPlayers()) do
+                if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                    pcall(function()
+                        v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize, _G.HeadSize, _G.HeadSize)
+                        v.Character.HumanoidRootPart.Transparency = 0.7
+                        v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really black")
+                        v.Character.HumanoidRootPart.Material = Enum.Material.Neon
+                        v.Character.HumanoidRootPart.CanCollide = false
+                    end)
+                end
+            end
+        end
+    end)
+end)
+Section6:NewButton("Universal Aimbot", "Nice aimbot.", function()
+    local deltaX = nil
+    local deltaY = nil
+    local aimDeltaX = nil
+    local aimDeltaY = nil 
+    local gameAimButton = nil
+    loadstring(game:HttpGet("https://pastebin.com/raw/w2S8YyDt", true))()
+end)
+Section6:NewButton("NextGen Game Hub ", "Loads in a game hub made from my scripts that i made", function()
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+	Title = "Coming Soon";
+	Text = "Pls wait";
+	Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150"})
+    Duration = "100000";
+    Button1 = "IT DID LOAD";
+    Button2 = "IT DIDNT LOAD";
+end)
+Section6:NewLabel("NextGen GameHub with scripts not mine")
+Section6:NewButton("NextGen Game Hub", "Loads in a nextGen game hub with scripts not mine", function()
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+	Title = "Coming Soon";
+	Text = "Pls wait";
+	Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150"})
+    Duration = "100000";
+    Button1 = "IT DID LOAD";
+    Button2 = "IT DIDNT LOAD";
+end)
+local Tab3 = Window:NewTab("Hubs")
+local Section7 = Tab3:NewSection("Hubs! (nothing yet xd)")
+local Tab4 = Window:NewTab("Trolling")
+local Section8 = Tab4:NewSection("TROLLING STUFF")
+Section8:NewButton("Roast Gui", "Self explanatory", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Sjskdnsidjskfn/Roast-gui-UPDATED-Version-/main/Roast%20gui%20(UPDATED%20Version)"))();
+end)
+Section8:NewButton("Rizz Gui", "Self explatanory -_-", function()
+    loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-rizz-gui-script-6992"))()
+end)
+Section8:NewButton("Sing Ballin", "Cool", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/EiXcuzTJ",true))()
+end)
+Section8:NewButton("Noclip Toggle (read desc)", "To toggle the noclip on and off click E on your keyboard", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/yxvrgmMH"))()
+end)
+Section8:NewButton("Fake Lag (read desc)", "To use press X on your keyboard", function()
+    loadstring(game:HttpGet("https://paste.gg/p/anonymous/d3492bd620bd4c46b54680ac80b0fa0d/files/161ddd9c992c4ceba3c298458d45188a/raw", true))()
+end)
+Section8:NewButton("Unnamed Fe Hub", "Idk really know the name", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/Dvrknvss/UniversalFEScriptHub/main/Script'))()
+end)
+Section8:NewLabel("My Trolling Hub:")
+Section8:NewButton("NewGen Trolling Hub (knows as B0MHUB coming soon)", "ButtonInfo", function()
+    print("Clicked")
+end)
+local Tab5 = Window:NewTab("Player")
+local Section9 = Tab5:NewSection("Player stuff")
+Section9:NewSlider("WalkSpeed", "Changes your Walkspeed", 999, 16, function(s)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+Section9:NewSlider("JumpPower", "Changes your JumpPower", 9999, 50, function(s)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+end)
+Section9:NewTextBox("Walkspeed modifier", "Write how much walk speed you want", function(txt)
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = tonumber(txt)
+end)
+Section9:NewTextBox("JumpPower modifier", "Write how much jumppower you want", function(txt)
+	game.Players.LocalPlayer.Character.Humanoid.JumpPower = tonumber(txt)
+end)
+Section9:NewButton("Reset walkspeed", "Resets your walkspeed", function()
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+end)
+Section9:NewButton("Reset JumpPower", "Resets Jump Power", function()
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+end)
+
+local Tab6 = Window:NewTab("Rave/Music")
+local Section10 = Tab6:NewSection("Music shit")
+Section10:NewLabel("Also only you can hear the song")
+Section10:NewLabel("Bypassed songs: (idk why i tought its a good idea)")
+Section10:NewButton("Bypassed song 1", "ButtonInfo", function()
+    local soundId = "rbxassetid://6788646778" 
+
+local sound = Instance.new("Sound")
+sound.SoundId = soundId
+sound.Parent = game.Workspace -- You can parent it wherever you like
+
+sound:Play()
+
+game:GetService("StarterGui"):SetCore("SendNotification", { 
+    Title = " song Loaded successfully";
+    Text = "Enjoy ";
+    Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+    Duration = 10; -- set duration in seconds
+    Button1 = "IT DID LOAD";
+    Button2 = "IT DIDNT LOAD";
+    SoundId = "rbxassetid://1626996526"; -- replace 123456789 with the actual sound ID
+})
+end)
+Section10:NewButton("Bypassed song 2 (Loud)", "ButtonInfo", function()
+    local soundId = "rbxassetid://6984999899" 
+
+local sound = Instance.new("Sound")
+sound.SoundId = soundId
+sound.Parent = game.Workspace -- You can parent it wherever you like
+
+sound:Play()
+
+game:GetService("StarterGui"):SetCore("SendNotification", { 
+    Title = " song Loaded successfully";
+    Text = "Enjoy ";
+    Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+    Duration = 10; -- set duration in seconds
+    Button1 = "IT DID LOAD";
+    Button2 = "IT DIDNT LOAD";
+    SoundId = "rbxassetid://1626996526";
+})
+end)
+Section10:NewButton("Bypassed song 3", "ButtonInfo", function()
+    local soundId = "rbxassetid://4750223111" 
+
+local sound = Instance.new("Sound")
+sound.SoundId = soundId
+sound.Parent = game.Workspace -- You can parent it wherever you like
+
+sound:Play()
+
+game:GetService("StarterGui"):SetCore("SendNotification", { 
+    Title = " song Loaded successfully";
+    Text = "Enjoy ";
+    Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+    Duration = 10; -- set duration in seconds
+    Button1 = "IT DID LOAD";
+    Button2 = "IT DIDNT LOAD";
+    SoundId = "rbxassetid://1626996526"; -- replace 123456789 with the actual sound ID
+})
+end)
+Section10:NewLabel("Now its only loud ones xd:")
+Section10:NewButton("Bypassed loud song 1", "ButtonInfo", function()
+    local soundId = "rbxassetid://7474088022" 
+
+local sound = Instance.new("Sound")
+sound.SoundId = soundId
+sound.Parent = game.Workspace -- You can parent it wherever you like
+
+sound:Play()
+
+game:GetService("StarterGui"):SetCore("SendNotification", { 
+    Title = " song Loaded successfully";
+    Text = "Enjoy ";
+    Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+    Duration = 10; -- set duration in seconds
+    Button1 = "IT DID LOAD";
+    Button2 = "IT DIDNT LOAD";
+    SoundId = "rbxassetid://1626996526"; -- replace 123456789 with the actual sound ID
+})
+end)
+Section10:NewButton("Bypassed loud song 2", "ButtonInfo", function()
+    local soundId = "rbxassetid://6896624865" 
+
+local sound = Instance.new("Sound")
+sound.SoundId = soundId
+sound.Parent = game.Workspace -- You can parent it wherever you like
+
+sound:Play()
+
+game:GetService("StarterGui"):SetCore("SendNotification", { 
+    Title = " song Loaded successfully";
+    Text = "Enjoy ";
+    Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+    Duration = 10; -- set duration in seconds
+    Button1 = "IT DID LOAD";
+    Button2 = "IT DIDNT LOAD";
+    SoundId = "rbxassetid://1626996526"; -- replace 123456789 with the actual sound ID
+})
+end)
+Section10:NewButton("Bypassed loud song 3", "ButtonInfo", function()
+    local soundId = "rbxassetid://8600104157" 
+
+local sound = Instance.new("Sound")
+sound.SoundId = soundId
+sound.Parent = game.Workspace -- You can parent it wherever you like
+
+sound:Play()
+
+game:GetService("StarterGui"):SetCore("SendNotification", { 
+    Title = " song Loaded successfully";
+    Text = "Enjoy ";
+    Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+    Duration = 10; -- set duration in seconds
+    Button1 = "IT DID LOAD";
+    Button2 = "IT DIDNT LOAD";
+    SoundId = "rbxassetid://1626996526"; -- replace 123456789 with the actual sound ID
+})
+end)
+Section10:NewButton("Bypassed loud song 4", "ButtonInfo", function()
+    local soundId = "rbxassetid://6853070044" 
+
+local sound = Instance.new("Sound")
+sound.SoundId = soundId
+sound.Parent = game.Workspace -- You can parent it wherever you like
+
+sound:Play()
+
+game:GetService("StarterGui"):SetCore("SendNotification", { 
+    Title = " song Loaded successfully";
+    Text = "Enjoy ";
+    Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+    Duration = 10; -- set duration in seconds
+    Button1 = "IT DID LOAD";
+    Button2 = "IT DIDNT LOAD";
+    SoundId = "rbxassetid://1626996526"; -- replace 123456789 with the actual sound ID
+})
+end)
+Section10:NewButton("Bypassed loud song 5", "ButtonInfo", function()
+    local soundId = "rbxassetid://9089453046" 
+
+local sound = Instance.new("Sound")
+sound.SoundId = soundId
+sound.Parent = game.Workspace -- You can parent it wherever you like
+
+sound:Play()
+
+game:GetService("StarterGui"):SetCore("SendNotification", { 
+    Title = " song Loaded successfully";
+    Text = "Enjoy ";
+    Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+    Duration = 10; -- set duration in seconds
+    Button1 = "IT DID LOAD";
+    Button2 = "IT DIDNT LOAD";
+    SoundId = "rbxassetid://1626996526"; -- replace 123456789 with the actual sound ID
+})
+end)
+Section10:NewButton("Bypassed loud song 6", "ButtonInfo", function()
+    local soundId = "rbxassetid://7301188827" 
+
+local sound = Instance.new("Sound")
+sound.SoundId = soundId
+sound.Parent = game.Workspace -- You can parent it wherever you like
+
+sound:Play()
+
+game:GetService("StarterGui"):SetCore("SendNotification", { 
+    Title = " song Loaded successfully";
+    Text = "Enjoy ";
+    Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+    Duration = 10; -- set duration in seconds
+    Button1 = "IT DID LOAD";
+    Button2 = "IT DIDNT LOAD";
+    SoundId = "rbxassetid://1626996526"; -- replace 123456789 with the actual sound ID
+})
+end)
+Section10:NewButton("Bypassed loud song 7", "ButtonInfo", function()
+    local soundId = "rbxassetid://6844230235" 
+
+local sound = Instance.new("Sound")
+sound.SoundId = soundId
+sound.Parent = game.Workspace -- You can parent it wherever you like
+
+sound:Play()
+
+game:GetService("StarterGui"):SetCore("SendNotification", { 
+    Title = " song Loaded successfully";
+    Text = "Enjoy ";
+    Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+    Duration = 10; -- set duration in seconds
+    Button1 = "IT DID LOAD";
+    Button2 = "IT DIDNT LOAD";
+    SoundId = "rbxassetid://1626996526"; -- replace 123456789 with the actual sound ID
+})
+end)
+local Tab7 = Window:NewTab("Settings/Options")
+local Section11 = Tab7:NewSection("Ui Options/Settings")
+Section11:NewColorPicker("Color Text", "Color Info", Color3.fromRGB(0,0,0), function(color)
+    print(color)
+    -- Second argument is the default color
+end)
+
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "ScreenGui"
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ResetOnSpawn = false
+
+local firstClickSound = Instance.new("Sound")
+firstClickSound.Name = "FirstClickSound"
+firstClickSound.SoundId = "rbxassetid://474303247" -- Replace with your first sound ID
+firstClickSound.Parent = ScreenGui
+
+local secondClickSound = Instance.new("Sound")
+secondClickSound.Name = "SecondClickSound"
+secondClickSound.SoundId = "rbxassetid://474303247" -- Replace with your second sound ID
+secondClickSound.Parent = ScreenGui
+
+local Toggle = Instance.new("TextButton")
+Toggle.Name = "Toggle"
+Toggle.Parent = ScreenGui
+Toggle.BackgroundColor3 = Color3.new(0, 0, 0)
+Toggle.Position = UDim2.new(0, 0, 0.454706937, 0)
+Toggle.Size = UDim2.new(0, 50, 0, 50)
+Toggle.Text = "-"
+Toggle.TextColor3 = Color3.new(1, 1, 1)
+Toggle.TextScaled = true
+Toggle.Font = Enum.Font.SourceSans
+Toggle.ClipsDescendants = true
+Toggle.Draggable = true
+
+local isGuiOpen = true
+
+Toggle.MouseButton1Click:Connect(function()
+    if not Toggle:IsDescendantOf(game.Players.LocalPlayer:WaitForChild("PlayerGui")) then
+        return
+    end
+    
+    if isGuiOpen then
+        firstClickSound:Play()
+        Toggle.Text = "+"
+        isGuiOpen = false
+        Library:ToggleUI() -- Assuming Library is defined elsewhere
+        
+    else
+        secondClickSound:Play()
+        Toggle.Text = "-"
+        isGuiOpen = true
+        Library:ToggleUI() -- Assuming Library is defined elsewhere
+    end
+end)
+
+local Corner = Instance.new("UICorner")
+Corner.Name = "Corner"
+Corner.CornerRadius = UDim.new(1, 0)
+Corner.Parent = Toggle
