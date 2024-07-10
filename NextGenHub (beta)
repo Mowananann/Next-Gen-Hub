@@ -1,4 +1,121 @@
+repeat wait() until game:IsLoaded() wait(2)
+local Library = loadstring(game:HttpGet("https://pastebin.com/raw/9iamJBLT"))()
+local Window = Library.CreateLib("NextGen Hub [kavo ui version. 1]", "BloodTheme")
+
+-- Info
+
+local Tab = Window:NewTab("Loader")
+local Section = Tab:NewSection("Select your themes")
+local themes = {
+     "Serpent",
+     "Synapse",
+     "Sentinel",
+    "DarkTheme",
+    "LightTheme",
+    "BloodTheme",
+    "GrapeTheme",
+    "Ocean",
+    "Midnight",
+    "ForestTheme",
+    "SunsetTheme",
+    "CandyTheme",
+    "GoldTheme",
+    "IceTheme",
+    "LavaTheme",
+    "NeonTheme",
+    "RoyalTheme",
+    "CitrusTheme",
+    "SpaceTheme",
+    "RubyTheme",
+    "EmeraldTheme",
+    "PeachTheme",
+    "VolcanoTheme",
+    "SakuraTheme",
+    "GalaxyTheme",
+    "CitrusLimeTheme",
+    "RoseGoldTheme",
+    "CoralTheme",
+    "AzureBlueTheme",
+    "LemonYellowTheme",
+    "LavenderPurpleTheme",
+    "MintGreenTheme",
+    "PeachOrangeTheme",
+    "TurquoiseBlueTheme",
+    "OrchidPurpleTheme",
+    "BananaYellowTheme",
+    "RaspberryPinkTheme",
+    "CoralReefTheme",
+    "MidnightSkyTheme",
+    "MarshmallowTheme",
+    "ForestGroveTheme",
+    "LemonadeStandTheme",
+    "SunsetBeachTheme",
+    "DiamondShineTheme",
+    "OceanBreezeTheme",
+    "RubyRoseTheme",
+    "LavenderDreamTheme"
+}
+
+-- Dropdown to select theme
+local selectedTheme
+
+Section:NewDropdown("Theme", "DropdownInf", themes, function(currentOption)
+    selectedTheme = currentOption
+    -- Beta
+repeat wait() until game:IsLoaded() wait(2)
+local Players = game:GetService("Players")
+local ReplicatedFirst = game:GetService("ReplicatedFirst")
+local TweenService = game:GetService("TweenService")
+
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+local playerName = player.Name
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.IgnoreGuiInset = true
+ScreenGui.Parent = playerGui
+
+local frame = Instance.new("Frame")
+frame.Parent = ScreenGui
+frame.Size = UDim2.new(1,0,1,0)
+frame.BackgroundTransparency = 0
+frame.BackgroundColor3 = Color3.fromRGB(0,20,40)
+
+local loadingRing = Instance.new("ImageLabel")
+loadingRing.Size = UDim2.new(0,256,0,256)
+loadingRing.BackgroundTransparency = 1
+loadingRing.Image = "rbxassetid://4965945816"
+loadingRing.AnchorPoint = Vector2.new(0.5,0.5)
+loadingRing.Position = UDim2.new(0.5,0,0.5,0)
+loadingRing.Parent = frame
+
+local textLabel = Instance.new("TextLabel")
+textLabel.Size = UDim2.new(0,200,0,50)
+textLabel.Position = UDim2.new(0.5,-100,0.5,-25)
+textLabel.BackgroundColor3 = Color3.fromRGB(0,20,40)
+textLabel.Font = Enum.Font.GothamBold
+textLabel.TextColor3 = Color3.new(.8,.8,.8)
+textLabel.Text = "Loading the script"
+textLabel.TextSize = 28
+textLabel.Parent = frame
+
+ReplicatedFirst:RemoveDefaultLoadingScreen()
+
+local tweenInfo = TweenInfo.new(4,Enum.EasingStyle.Linear,Enum.EasingDirection.In,-1)
+local tween = TweenService:Create(loadingRing,tweenInfo,{Rotation = 360})
+
+tween:Play()
+
+wait(5)
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+
+loadingRing.Visible = false
+frame:TweenPosition(UDim2.new(0,0,1,0),"InOut","Sine",2)
 wait(2)
+ScreenGui:Destroy()
 
 local ScreenGui = Instance.new("ScreenGui")
 local Ping = Instance.new("TextLabel")
@@ -84,7 +201,7 @@ end
 spawn(rgb)
 
 
-local soundId = "rbxassetid://8348496392"
+local soundId = "rbxassetid://8568536678"
 
 local sound = Instance.new("Sound")
 sound.SoundId = soundId
@@ -93,38 +210,327 @@ sound.Parent = game.Workspace -- You can parent it wherever you like
 sound:Play()
 
 
-game:GetService("StarterGui"):SetCore("SendNotification", { 
-    Title = "Loaded successfully";
-    Text = "Enjoy ";
-    Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
-    Duration = 10; -- set duration in seconds
-    Button1 = "IT DID LOAD";
-    Button2 = "IT DIDNT LOAD";
-    SoundId = "rbxassetid://1626996526";
-})
+local TweenService = game:GetService("TweenService")
+local GuiService = game:GetService("GuiService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local notificationText = "Loaded successfuly"
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.IgnoreGuiInset = true
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0.4, 0, 0.1, 0)
+frame.Position = UDim2.new(0.3, 0, 0, 0)
+frame.BackgroundColor3 = Color3.fromRGB(0, 20, 40)
+frame.BorderSizePixel = 0
+frame.Parent = ScreenGui
+
+local textLabel = Instance.new("TextLabel")
+textLabel.Size = UDim2.new(0.9, 0, 0.9, 0)
+textLabel.Position = UDim2.new(0.05, 0, 0, 0)
+textLabel.BackgroundTransparency = 1
+textLabel.Text = notificationText
+textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+textLabel.TextScaled = true
+textLabel.Font = Enum.Font.GothamBold
+textLabel.Parent = frame
+
+GuiService:AddSelectionParent("NotificationGUI", frame)
+
+local tweenIn = TweenService:Create(frame, TweenInfo.new(0.5, Enum.EasingStyle.Bounce, Enum.EasingDirection.Out), {Position = UDim2.new(0.3, 0, 0.05, 0)})
+local tweenOut = TweenService:Create(frame, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Position = UDim2.new(0.3, 0, -0.1, 0)})
+
+tweenIn:Play()
+
+wait(3)
+
+tweenOut:Play()
+
+wait(0)
+
+ScreenGui:Destroy()
+
 
     game.StarterGui:SetCore("SendNotification", {
     Title = "Join my discord!";
     Text = "Joining my discord would be a great help";
-    Icon = "http://www.roblox.com/asset/?id=12652726911";
-    Duration = "10";
+    Icon = "http://www.roblox.com/asset/?id=11853060991";
+    Duration = "5";
     Button1 = "Sure!";
     Button2 = "Nah im good"
 })
 
-local Library = loadstring(game:HttpGet("https://pastebin.com/raw/kjAxK7hC"))();
-local Window = Library.CreateLib("NextGen Hub (BaconHub X & NewGen Hub)", "Serpent")
-local Tab = Window:NewTab("Credits")
-local Section = Tab:NewSection("Credits")
-Section:NewLabel("Made By The BaconBlitz Team")
-Section:NewLabel("ALSO THIS SCRIPT IS THE CONTINUATION OF")
-Section:NewLabel("BACONHUB")
-Section:NewButton("Join My discord!", "Pls pls pls -flamingo", function()
-    setclipboard("https://discord.com/invite/KdJrj2nEy5")
+local Library = loadstring(game:HttpGet("https://pastebin.com/raw/9iamJBLT"))()
+local Window = Library.CreateLib("NextGen Hub [kavo ui version. 1]", selectedTheme)
+
+-- Info
+
+local Tab = Window:NewTab("Your info & others")
+local Section = Tab:NewSection("Player info:")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+Section:NewLabel("Username: " .. player.Name)
+Section:NewButton("Copy UserName", "Heya" .. player.Name, function()
+    setclipboard("Username:" .. player.Name)
 end)
-local Section1 = Tab:NewSection("Update Logs!")
+Section:NewLabel("Display Name: " .. player.DisplayName)
+Section:NewButton("Copy Display name", "Heyaa" .. player.Name, function()
+    setclipboard("Displayname:" .. player.DisplayName)
+end)
+Section:NewLabel("Account age: " .. player.AccountAge .. " days")
+Section:NewLabel("User Id: " .. player.UserId)
+Section:NewButton("Copy user id", "Hey", function()
+    setclipboard("User Id:" .. player.UserId)
+end)
+Section:NewLabel("Membership Type: " .. (player.MembershipType.Name or "None"))
+Section:NewLabel("Friends Count: " .. #player:GetFriendsOnline())
+
+local Section1 = Tab:NewSection("Others info:")
+
+local Players = game:GetService("Players")
+local GuiService = game:GetService("GuiService")
+
+local playerOptions = {}
+local selectedPlayer = nil
+
+local dropdown = Section1:NewDropdown("Players", "List of players", playerOptions, function(currentOption)
+    
+    local username = string.match(currentOption, "([^/]+)")
+    selectedPlayer = Players:FindFirstChild(username)
+end)
+
+
+local button = Section1:NewButton("Copy Username", "Copy the username of the selected player", function()
+    if selectedPlayer then
+        
+        setclipboard("Username: " .. selectedPlayer.Name)
+        print("Username copied to clipboard: " .. selectedPlayer.Name)
+    else
+        print("No player selected.")
+    end
+end)
+
+local button = Section1:NewButton("Copy Display Name", "Copy the display name of the selected player", function()
+    if selectedPlayer then
+        
+        setclipboard("Display Name: " .. selectedPlayer.DisplayName)
+        print("Display name copied to clipboard: " .. selectedPlayer.DisplayName)
+    else
+        print("No player selected.")
+    end
+end)
+
+local button = Section1:NewButton("Copy Player id", "Copy the Id of the selected player", function()
+    if selectedPlayer then
+        
+        setclipboard("Id: " .. selectedPlayer.UserId)
+        print("Id copied to clipboard: " .. selectedPlayer.UserId)
+    else
+        print("No player selected.")
+    end
+end)
+
+
+local function updateDropdown()
+    
+    for i = #playerOptions, 1, -1 do
+        table.remove(playerOptions, i)
+    end
+
+    
+    for _, player in ipairs(Players:GetPlayers()) do
+        table.insert(playerOptions, player.Name .. "/" .. player.DisplayName)
+    end
+
+    
+    dropdown:Refresh(playerOptions)
+end
+
+
+updateDropdown()
+
+
+Players.PlayerAdded:Connect(function()
+    updateDropdown()
+end)
+
+Players.PlayerRemoving:Connect(function()
+    updateDropdown()
+end)
+
+
+-- Main
+
 local Tab1 = Window:NewTab("Main")
 local Section2 = Tab1:NewSection("Cool stuff ig")
+Section2:NewButton("Definitely not a compliment machine", "You will get offensed", function()
+    -- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local TextLabel = Instance.new("TextLabel")
+local TextButton = Instance.new("TextButton")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(48, 48, 48)
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.322231829, 0, 0.296463251, 0)
+Frame.Size = UDim2.new(0, 327, 0, 233)
+
+UICorner.Parent = Frame
+
+TextLabel.Parent = Frame
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(0, 0, 0.251180112, 0)
+TextLabel.Selectable = true
+TextLabel.Size = UDim2.new(0, 326, 0, 66)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = "None!"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.89296639, 0, 0.0472103022, 0)
+TextButton.Size = UDim2.new(0, 24, 0, 23)
+TextButton.Font = Enum.Font.SourceSans
+TextButton.Text = "X"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextSize = 14.000
+
+-- Scripts:
+
+local function UWCF_fake_script() -- TextLabel.randomizer 
+	local script = Instance.new('Script', TextLabel)
+
+	-- Randomizer by bye82!
+	
+	local x = 0
+	
+	local function random()
+		x = math.random(1,10)
+	end
+	
+	random()
+	
+	if x == 1 then
+		script.Parent.Text = "you are fucking useless"
+	elseif x == 2 then
+		script.Parent.Text = "kill yourself nigga"
+	elseif x == 3 then
+		script.Parent.Text = "kreekcraft said the best that your dad dosent love you"
+	elseif x == 4 then
+		script.Parent.Text = "wyd if i would cock my glock and shoot you nigga?"
+	elseif x == 5 then
+		script.Parent.Text = "womans should have more rights then you"
+	elseif x == 6 then
+		script.Parent.Text = "wyd if outsideitrains uses you as his slave?"
+	elseif x == 7 then
+		script.Parent.Text = "i wasted my n word passes for you, worthless nigga"
+	elseif x == 8 then
+		script.Parent.Text = "kys in this moment please :3"
+	elseif x == 9 then
+		script.Parent.Text = "send me your c.ai porn chats, they are more intresting then you"
+	elseif x == 10 then
+		script.Parent.Text = "you fucking gay or woman."
+		elseif x == 11 then
+		script.Parent.Text = "Your a fucking idiot"
+	elseif x == 12 then
+		script.Parent.Text = "Adolf Hitler was better than you"
+	elseif x == 13 then
+		script.Parent.Text = "stop dick riding us -- The baconblitz Team"
+	elseif x == 14 then
+		script.Parent.Text = "Ima get Opps for thos shit -- PopKid_Dev"
+		elseif x == 15 then
+		script.Parent.Text = "im bouta bloww~~ looking ass"
+		elseif x == 16 then
+		script.Parent.Text = "Ima hunt you and kill you"
+		elseif x == 17 then
+		script.Parent.Text = "These are the opposite of a compliment machine"
+		elseif x == 18 then
+		script.Parent.Text = "Kys you fucking monkey"
+		elseif x == 19 then
+		script.Parent.Text = "Kys you fucking clown 🤡"
+		elseif x == 20 then
+		script.Parent.Text = "I will become your dad"
+	end
+	
+	
+end
+coroutine.wrap(UWCF_fake_script)()
+local function FSAHM_fake_script() -- Frame.DragScript 
+	local script = Instance.new('LocalScript', Frame)
+
+	--Not made by me, check out this video: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
+	--Put this inside of your Frame and configure the speed if you would like.
+	--Enjoy! Credits go to: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
+	
+	local UIS = game:GetService('UserInputService')
+	local frame = script.Parent
+	local dragToggle = nil
+	local dragSpeed = 0.25
+	local dragStart = nil
+	local startPos = nil
+	
+	local function updateInput(input)
+		local delta = input.Position - dragStart
+		local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
+			startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+		game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
+	end
+	
+	frame.InputBegan:Connect(function(input)
+		if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
+			dragToggle = true
+			dragStart = input.Position
+			startPos = frame.Position
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragToggle = false
+				end
+			end)
+		end
+	end)
+	
+	UIS.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			if dragToggle then
+				updateInput(input)
+			end
+		end
+	end)
+	
+end
+coroutine.wrap(FSAHM_fake_script)()
+local function UWOBWQ_fake_script() -- TextButton.GuiClick 
+	local script = Instance.new('Script', TextButton)
+
+	function onButtonClicked()
+	script.Parent.Parent:Destroy()
+	end
+	script.Parent.MouseButton1Down:connect(onButtonClicked)
+end
+coroutine.wrap(UWOBWQ_fake_script)()
+end)
 Section2:NewButton("OG NextGen (no more updates)", "ButtonInfo", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Mowananann/BaconHub-x/main/BaconHub-x"))()
 end)
@@ -152,28 +558,169 @@ Section4:NewButton("ServerHop", "Self explatanory", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/VduBT2nt"))()
 end)
 local Section5 = Tab1:NewSection("what do you want?")
-local Tab2 = Window:NewTab("Games")
-local Section6 = Tab2:NewSection("Scripts that can help in games (all made by me)")
-Section6:NewTextBox("Hitbox modifier", "cool thing", function(txt)
-    _G.HeadSize = tonumber(txt)
-    _G.Disabled = false  -- Ensure this is set to false so the function can run
 
-    game:GetService('RunService').RenderStepped:Connect(function()
-        if not _G.Disabled then  -- Use 'not' to check if it's false
-            for i, v in ipairs(game:GetService('Players'):GetPlayers()) do
-                if v.Name ~= game:GetService('Players').LocalPlayer.Name then
-                    pcall(function()
-                        v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize, _G.HeadSize, _G.HeadSize)
-                        v.Character.HumanoidRootPart.Transparency = 0.7
-                        v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really black")
-                        v.Character.HumanoidRootPart.Material = Enum.Material.Neon
-                        v.Character.HumanoidRootPart.CanCollide = false
-                    end)
-                end
-            end
+-- Games
+
+local Tab2 = Window:NewTab("Games")
+local Section6 = Tab2:NewSection("things that can help in games")
+local gameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+Section6:NewLabel("Game Name: " .. gameName)
+Section6:NewButton("Copy Game name", "Hi" .. player.Name, function()
+    setclipboard("Game Name:" .. gameName)
+end)
+local gameId = tostring(game.PlaceId)
+Section6:NewLabel("Game ID: " .. gameId)
+Section6:NewButton("Copy Game name", "Hii" .. player.Name, function()
+    setclipboard("Game ID: " .. gameId)
+end)
+Section6:NewLabel("These three can maybe be useful in games")
+local player = game.Players.LocalPlayer
+local positionLabel
+
+local function updatePosition(character)
+    if character and character:FindFirstChild("HumanoidRootPart") then
+        local currentPosition = character:WaitForChild("HumanoidRootPart").Position
+        positionLabel:UpdateLabel("Current Position: " .. "X: " .. math.floor(currentPosition.X) .. " Y: " .. math.floor(currentPosition.Y) .. " Z: " .. math.floor(currentPosition.Z))
+    else
+        positionLabel:UpdateLabel("Character is dead or not loaded.")
+    end
+end
+
+local function onCharacterAdded(character)
+    local RunService = game:GetService("RunService")
+    local interval = 1 
+    local elapsedTime = 0
+
+    RunService.Heartbeat:Connect(function(step)
+        elapsedTime = elapsedTime + step
+        if elapsedTime >= interval then
+            updatePosition(player.Character)
+            elapsedTime = 0
         end
     end)
+end
+
+
+positionLabel = Section6:NewLabel("Current Position: Initializing...")
+
+
+player.CharacterAdded:Connect(onCharacterAdded)
+
+
+if player.Character then
+    onCharacterAdded(player.Character)
+end
+
+Section6:NewButton("Copy Current Position", "Hey", function()
+    if player.Character then
+        local currentPosition = player.Character:WaitForChild("HumanoidRootPart").Position
+        setclipboard("Position: X: " .. math.floor(currentPosition.X) .. " Y: " .. math.floor(currentPosition.Y) .. " Z: " .. math.floor(currentPosition.Z))
+    end
 end)
+Section6:NewTextBox("Enter Position", "Format: X,Y,Z", function(txt)
+    
+    local coordinates = {}
+    for coord in string.gmatch(txt, "([^,]+)") do
+        table.insert(coordinates, tonumber(coord))
+    end
+
+    
+    if #coordinates == 3 then
+        local player = game.Players.LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+        
+        humanoidRootPart.CFrame = CFrame.new(coordinates[1], coordinates[2], coordinates[3])
+    else
+        warn("Please enter a valid position in the format: X,Y,Z")
+    end
+end)
+
+Section6:NewLabel("i made these exept the aimbot for pc")
+local InfiniteJumpEnabled = false
+
+local UserInputService = game:GetService("UserInputService")
+local Players = game:GetService("Players")
+
+local function onJumpRequest()
+    if InfiniteJumpEnabled then
+        local character = Players.LocalPlayer.Character
+        if character then
+            local humanoid = character:FindFirstChildOfClass('Humanoid')
+            if humanoid then
+                humanoid:ChangeState(Enum.HumanoidStateType.Physics)
+                humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+            end
+        end
+    end
+end
+
+UserInputService.JumpRequest:Connect(onJumpRequest)
+
+Section6:NewToggle("Infinite Jump", "By toggling this you can jump infinitely.", function(state)
+    InfiniteJumpEnabled = state
+    if state then
+        print("Infinite Jump: ON")
+    else
+        print("Infinite Jump: OFF")
+    end
+end)
+
+-- Initialize global variables
+_G.HeadSize = 5  -- Default head size
+_G.Disabled = false  -- Toggle state for hitbox visibility
+
+-- Services
+local Players = game:GetService('Players')
+local RunService = game:GetService('RunService')
+
+-- Update hitbox size and properties
+local function updateHitbox()
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player.Name ~= Players.LocalPlayer.Name then
+            local character = player.Character
+            if character and character:FindFirstChild('HumanoidRootPart') then
+                local humanoidRootPart = character.HumanoidRootPart
+                humanoidRootPart.Size = Vector3.new(_G.HeadSize, _G.HeadSize, _G.HeadSize)
+                humanoidRootPart.Transparency = 0.7
+                humanoidRootPart.BrickColor = BrickColor.new("Really black")
+                humanoidRootPart.Material = Enum.Material.Neon
+                humanoidRootPart.CanCollide = false
+            end
+        end
+    end
+end
+
+-- Connect the RenderStepped event to update the hitbox based on the toggle state
+RunService.RenderStepped:Connect(function()
+    if not _G.Disabled then
+        updateHitbox()
+    end
+end)
+
+-- TextBox to modify the hitbox size
+Section6:NewTextBox("Hitbox modifier", "Enter a value to change the hitbox size.", function(txt)
+    local newSize = tonumber(txt)
+    if newSize and newSize > 0 then
+        _G.HeadSize = newSize
+        print("Hitbox Size Set to:", _G.HeadSize)
+    else
+        print("Invalid input for hitbox size. Please enter a positive number.")
+    end
+end)
+
+-- Toggle to enable or disable the hitbox visibility
+Section6:NewToggle("Invisible hitbox toggle", "Toggle to enable or disable the hitbox.", function(state)
+    _G.Disabled = not state  -- Toggle the Disabled state
+    if state then
+        print("Hitbox Modifier Enabled")
+    else
+        print("Hitbox Modifier Disabled")
+    end
+end)
+
+
 Section6:NewButton("Universal Aimbot", "Nice aimbot.", function()
     local deltaX = nil
     local deltaY = nil
@@ -201,8 +748,14 @@ Section6:NewButton("NextGen Game Hub", "Loads in a nextGen game hub with scripts
     Button1 = "IT DID LOAD";
     Button2 = "IT DIDNT LOAD";
 end)
+
+-- Hubs
+
 local Tab3 = Window:NewTab("Hubs")
 local Section7 = Tab3:NewSection("Hubs! (nothing yet xd)")
+
+-- Trolling
+
 local Tab4 = Window:NewTab("Trolling")
 local Section8 = Tab4:NewSection("TROLLING STUFF")
 Section8:NewButton("Roast Gui", "Self explanatory", function()
@@ -223,11 +776,42 @@ end)
 Section8:NewButton("Unnamed Fe Hub", "Idk really know the name", function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/Dvrknvss/UniversalFEScriptHub/main/Script'))()
 end)
-Section8:NewLabel("My Trolling Hub:")
-Section8:NewButton("NewGen Trolling Hub (knows as B0MHUB coming soon)", "ButtonInfo", function()
-    print("Clicked")
+Section8:NewLabel("More stuff")
+Section8:NewButton("Modded click to tp tool", "Wsg", function()
+    local mouse = game.Players.LocalPlayer:GetMouse()
+local tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = "Equip to Click TP"
+
+local sound = Instance.new("Sound")
+sound.SoundId = "rbxassetid://5433025904"
+sound.Volume = 1
+sound.Parent = game.Workspace
+
+tool.Activated:Connect(function()
+    local startPos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+    local endPos = mouse.Hit.p
+    local undergroundPos = endPos - Vector3.new(0, 5, 0) 
+    local groundPos = endPos + Vector3.new(0, 5, 0) 
+    local avatar = game.Players.LocalPlayer.Character
+    local rootPart = avatar:FindFirstChild("HumanoidRootPart")
+    rootPart.CFrame = CFrame.new(undergroundPos)
+    rootPart.Transparency = 1 
+    wait(0.5) 
+    local tweenInfo = TweenInfo.new(2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, false, 0)
+    local tween = game.TweenService:Create(rootPart, tweenInfo, {CFrame = CFrame.new(groundPos)})
+    tween:Play()
+    tween.Completed:Connect(function()
+        rootPart.Transparency = 0 
+        sound:Play() 
+    end)
 end)
-local Tab5 = Window:NewTab("Player")
+tool.Parent = game.Players.LocalPlayer.Backpack
+end)
+
+-- Player
+
+local Tab5 = Window:NewTab("Player & other players")
 local Section9 = Tab5:NewSection("Player stuff")
 Section9:NewSlider("WalkSpeed", "Changes your Walkspeed", 999, 16, function(s)
     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
@@ -247,231 +831,859 @@ end)
 Section9:NewButton("Reset JumpPower", "Resets Jump Power", function()
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
 end)
+Section9:NewButton("click tp", "uhh yeah", function()
+    mouse = game.Players.LocalPlayer:GetMouse()
+tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = "Equip to Click TP"
+tool.Activated:connect(function()
+local pos = mouse.Hit+Vector3.new(0,2.5,0)
+pos = CFrame.new(pos.X,pos.Y,pos.Z)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+end)
+tool.Parent = game.Players.LocalPlayer.Backpack
+end)
+Section9:NewLabel("Advance Player stuff")
+local player = game.Players.LocalPlayer
+local positionLabel
+
+local function updatePosition(character)
+    if character and character:FindFirstChild("HumanoidRootPart") then
+        local currentPosition = character:WaitForChild("HumanoidRootPart").Position
+        positionLabel:UpdateLabel("Current Position: " .. "X: " .. math.floor(currentPosition.X) .. " Y: " .. math.floor(currentPosition.Y) .. " Z: " .. math.floor(currentPosition.Z))
+    else
+        positionLabel:UpdateLabel("Character is dead or not loaded.")
+    end
+end
+
+local function onCharacterAdded(character)
+    local RunService = game:GetService("RunService")
+    local interval = 1 -- 1 second interval
+    local elapsedTime = 0
+
+    RunService.Heartbeat:Connect(function(step)
+        elapsedTime = elapsedTime + step
+        if elapsedTime >= interval then
+            updatePosition(player.Character)
+            elapsedTime = 0
+        end
+    end)
+end
+
+
+positionLabel = Section9:NewLabel("Current Position: Initializing...")
+
+
+player.CharacterAdded:Connect(onCharacterAdded)
+
+
+if player.Character then
+    onCharacterAdded(player.Character)
+end
+
+Section9:NewButton("Copy Current Position", "Hey", function()
+    if player.Character then
+        local currentPosition = player.Character:WaitForChild("HumanoidRootPart").Position
+        setclipboard("Position: X: " .. math.floor(currentPosition.X) .. " Y: " .. math.floor(currentPosition.Y) .. " Z: " .. math.floor(currentPosition.Z))
+    end
+end)
+Section9:NewTextBox("Enter Position", "Format: X,Y,Z", function(txt)
+    
+    local coordinates = {}
+    for coord in string.gmatch(txt, "([^,]+)") do
+        table.insert(coordinates, tonumber(coord))
+    end
+
+    
+    if #coordinates == 3 then
+        local player = game.Players.LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+        
+        humanoidRootPart.CFrame = CFrame.new(coordinates[1], coordinates[2], coordinates[3])
+    else
+        warn("Please enter a valid position in the format: X,Y,Z")
+    end
+end)
+
+Section9:NewLabel("Other Players")
+
+local Players = game:GetService("Players")
+local playerOptions = {}
+local selectedPlayer = nil
+local isSpectating = false
+
+local dropdown = Section9:NewDropdown("Players", "List of players", playerOptions, function(currentOption)
+    
+    local username = string.match(currentOption, "([^/]+)")
+    selectedPlayer = Players:FindFirstChild(username)
+    if isSpectating and selectedPlayer then
+        
+        game.Workspace.CurrentCamera.CameraSubject = selectedPlayer.Character
+    end
+end)
+
+local toggle = Section9:NewToggle("Spectate (kinda laggy)", "Toggle spectating the selected player", function(state)
+    isSpectating = state
+    if isSpectating and selectedPlayer then
+        print("Spectate On")
+        
+        game.Workspace.CurrentCamera.CameraSubject = selectedPlayer.Character
+    else
+        print("Spectate Off")
+        
+        local localPlayer = Players.LocalPlayer
+        if localPlayer and localPlayer.Character then
+            game.Workspace.CurrentCamera.CameraSubject = localPlayer.Character
+        end
+    end
+end)
+
+local button = Section9:NewButton("Teleport", "Teleport to the selected player", function()
+    if selectedPlayer then
+        local localPlayer = Players.LocalPlayer
+        if localPlayer and localPlayer.Character then
+            local humanoidRootPart = localPlayer.Character:FindFirstChild("HumanoidRootPart")
+            local selectedPlayerCharacter = selectedPlayer.Character
+            if humanoidRootPart and selectedPlayerCharacter then
+                
+                humanoidRootPart.CFrame = selectedPlayerCharacter.HumanoidRootPart.CFrame
+            end
+        end
+    end
+end)
+
+
+
+local function updateDropdown()
+    
+    for i = #playerOptions, 1, -1 do
+        table.remove(playerOptions, i)
+    end
+
+    
+    for _, player in ipairs(Players:GetPlayers()) do
+        table.insert(playerOptions, player.Name .. "/" .. player.DisplayName)
+    end
+
+    
+    dropdown:Refresh(playerOptions)
+end
+
+
+updateDropdown()
+
+
+Players.PlayerAdded:Connect(function()
+    updateDropdown()
+end)
+
+Players.PlayerRemoving:Connect(function()
+    updateDropdown()
+end)
+
+local flingButton = Section9:NewButton("Fling Player", "Fling the selected player", function()
+    if selectedPlayer then
+        local character = selectedPlayer.Character
+        if character and character:FindFirstChild("HumanoidRootPart") then
+            local rootPart = character.HumanoidRootPart
+            -- Remove any existing BodyVelocity to avoid conflicts
+            if rootPart:FindFirstChild("FlingVelocity") then
+                rootPart.FlingVelocity:Destroy()
+            end
+            
+            -- Create a new BodyVelocity object to apply the fling force
+            local bodyVelocity = Instance.new("BodyVelocity")
+            bodyVelocity.Name = "FlingVelocity"
+            bodyVelocity.Velocity = Vector3.new(0, 500, 0) -- Adjust the vector as needed
+            bodyVelocity.P = 1250
+            bodyVelocity.MaxForce = Vector3.new(100000, 100000, 100000)
+            bodyVelocity.Parent = rootPart
+
+            -- Remove the BodyVelocity after a short duration
+            game:GetService("Debris"):AddItem(bodyVelocity, 0.1)
+
+            print("Flung player: " .. selectedPlayer.Name)
+        else
+            print("Selected player's character or HumanoidRootPart not found.")
+        end
+    else
+        print("No player selected.")
+    end
+end)
+
+-- Music
 
 local Tab6 = Window:NewTab("Rave/Music")
 local Section10 = Tab6:NewSection("Music shit")
+Section10:NewLabel("Play your own music")
+Section10:NewTextBox("Enter song id", "Cool Right?", function(txt)
+    local soundId = "rbxassetid://" .. tonumber(txt)
+
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
+
+    sound:Play()
+end)
+Section10:NewLabel("Volume")
+Section10:NewLabel("The max volume is 20")
+Section10:NewLabel("The lowest volume is 0")
+Section10:NewLabel("The starting volume is 10")
+
+local volume = 10
+local maxVolume = 20
+local minVolume = 0
+
+
+local function updateVolume()
+    for _, sound in ipairs(game.Workspace:GetChildren()) do
+        if sound:IsA("Sound") then
+            sound.Volume = volume / maxVolume
+        end
+    end
+end
+
+
+Section10:NewButton("-", "Decrease Volume", function()
+    if volume > minVolume then
+        volume = volume - 1
+        updateVolume()
+        print("Volume decreased to", volume)
+    else
+        print("Volume is already at the minimum level")
+    end
+end)
+
+
+Section10:NewButton("+", "Increase Volume", function()
+    if volume < maxVolume then
+        volume = volume + 1
+        updateVolume()
+        print("Volume increased to", volume)
+    else
+        print("Volume is already at the maximum level")
+    end
+end)
+
 Section10:NewLabel("Also only you can hear the song")
 Section10:NewLabel("Bypassed songs: (idk why i tought its a good idea)")
 Section10:NewButton("Bypassed song 1", "ButtonInfo", function()
     local soundId = "rbxassetid://6788646778" 
 
-local sound = Instance.new("Sound")
-sound.SoundId = soundId
-sound.Parent = game.Workspace -- You can parent it wherever you like
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
 
-sound:Play()
+    sound:Play()
 
-game:GetService("StarterGui"):SetCore("SendNotification", { 
-    Title = " song Loaded successfully";
-    Text = "Enjoy ";
-    Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
-    Duration = 10; -- set duration in seconds
-    Button1 = "IT DID LOAD";
-    Button2 = "IT DIDNT LOAD";
-    SoundId = "rbxassetid://1626996526"; -- replace 123456789 with the actual sound ID
-})
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; -- set duration in seconds
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
 end)
 Section10:NewButton("Bypassed song 2 (Loud)", "ButtonInfo", function()
     local soundId = "rbxassetid://6984999899" 
 
-local sound = Instance.new("Sound")
-sound.SoundId = soundId
-sound.Parent = game.Workspace -- You can parent it wherever you like
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
 
-sound:Play()
+    sound:Play()
 
-game:GetService("StarterGui"):SetCore("SendNotification", { 
-    Title = " song Loaded successfully";
-    Text = "Enjoy ";
-    Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
-    Duration = 10; -- set duration in seconds
-    Button1 = "IT DID LOAD";
-    Button2 = "IT DIDNT LOAD";
-    SoundId = "rbxassetid://1626996526";
-})
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; -- set duration in seconds
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
 end)
 Section10:NewButton("Bypassed song 3", "ButtonInfo", function()
     local soundId = "rbxassetid://4750223111" 
 
-local sound = Instance.new("Sound")
-sound.SoundId = soundId
-sound.Parent = game.Workspace -- You can parent it wherever you like
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
 
-sound:Play()
+    sound:Play()
 
-game:GetService("StarterGui"):SetCore("SendNotification", { 
-    Title = " song Loaded successfully";
-    Text = "Enjoy ";
-    Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
-    Duration = 10; -- set duration in seconds
-    Button1 = "IT DID LOAD";
-    Button2 = "IT DIDNT LOAD";
-    SoundId = "rbxassetid://1626996526"; -- replace 123456789 with the actual sound ID
-})
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; -- set duration in seconds
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
 end)
+Section10:NewButton("Bypassed song 4", "ButtonInfo", function()
+    local soundId = "rbxassetid://6845637094" 
+
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
+
+    sound:Play()
+
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; 
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
+end)
+
+Section10:NewButton("Bypassed song 5", "ButtonInfo", function()
+    local soundId = "rbxassetid://9042248317" 
+
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
+
+    sound:Play()
+
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; 
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
+end)
+
+Section10:NewButton("Bypassed song 6", "ButtonInfo", function()
+    local soundId = "rbxassetid://8361838923" 
+
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
+
+    sound:Play()
+
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; 
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
+end)
+
+Section10:NewButton("Bypassed song 7 (Use if you want to break your ears)", "ButtonInfo", function()
+    local soundId = "rbxassetid://7764369437" 
+
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
+
+    sound:Play()
+
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; 
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
+end)
+
+Section10:NewButton("Bypassed song 8 (Lets go HARD R!?)", "ButtonInfo", function()
+    local soundId = "rbxassetid://3174077614" 
+
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
+
+    sound:Play()
+
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; 
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
+end)
+
+Section10:NewButton("Bypassed song 9", "ButtonInfo", function()
+    local soundId = "rbxassetid://6753817247" 
+
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
+
+    sound:Play()
+
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; 
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
+end)
+
+Section10:NewButton("Bypassed song 10 (reeses puff)", "ButtonInfo", function()
+    local soundId = "rbxassetid://6647947988" 
+
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
+
+    sound:Play()
+
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; 
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
+end)
+
+Section10:NewButton("Bypassed song 11", "ButtonInfo", function()
+    local soundId = "rbxassetid://6674211522" 
+
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
+
+    sound:Play()
+
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; 
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
+end)
+
+Section10:NewButton("Bypassed song 12 (blm is a joke [racist])", "ButtonInfo", function()
+    local soundId = "rbxassetid://1533388171" 
+
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
+
+    sound:Play()
+
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; 
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
+end)
+
+Section10:NewButton("Bypassed song 13", "ButtonInfo", function()
+    local soundId = "rbxassetid://15689455422" 
+
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
+
+    sound:Play()
+
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; 
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
+end)
+
+Section10:NewButton("Bypassed song 14", "ButtonInfo", function()
+    local soundId = "rbxassetid://16190782181" 
+
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
+
+    sound:Play()
+
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; 
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
+end)
+
+Section10:NewButton("Bypassed song 15 (cringe brooklynbloodpop song)", "ButtonInfo", function()
+    local soundId = "rbxassetid://6823597327" 
+
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
+
+    sound:Play()
+
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; 
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
+end)
+
+Section10:NewButton("Bypassed song 16", "ButtonInfo", function()
+    local soundId = "rbxassetid://6911766512" 
+
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
+
+    sound:Play()
+
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; 
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
+end)
+
+Section10:NewButton("Bypassed song 17", "ButtonInfo", function()
+    local soundId = "rbxassetid://7014573768" 
+
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
+
+    sound:Play()
+
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; 
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
+end)
+
+Section10:NewButton("Bypassed song 17", "ButtonInfo", function()
+    local soundId = "rbxassetid://7014573768" 
+
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
+
+    sound:Play()
+
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; 
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
+end)
+
+Section10:NewButton("Bypassed song 18 (que pro meme)", "ButtonInfo", function()
+    local soundId = "rbxassetid://7829991983" 
+
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
+
+    sound:Play()
+
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; 
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
+end)
+
+Section10:NewButton("Bypassed song 19", "ButtonInfo", function()
+    local soundId = "rbxassetid://6695430066" 
+
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
+
+    sound:Play()
+
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; 
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
+end)
+
+Section10:NewButton("Bypassed song 20", "ButtonInfo", function()
+    local soundId = "rbxassetid://6893776529" 
+
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
+
+    sound:Play()
+
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; 
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
+end)
+
 Section10:NewLabel("Now its only loud ones xd:")
 Section10:NewButton("Bypassed loud song 1", "ButtonInfo", function()
     local soundId = "rbxassetid://7474088022" 
 
-local sound = Instance.new("Sound")
-sound.SoundId = soundId
-sound.Parent = game.Workspace -- You can parent it wherever you like
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
 
-sound:Play()
+    sound:Play()
 
-game:GetService("StarterGui"):SetCore("SendNotification", { 
-    Title = " song Loaded successfully";
-    Text = "Enjoy ";
-    Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
-    Duration = 10; -- set duration in seconds
-    Button1 = "IT DID LOAD";
-    Button2 = "IT DIDNT LOAD";
-    SoundId = "rbxassetid://1626996526"; -- replace 123456789 with the actual sound ID
-})
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; -- set duration in seconds
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
 end)
 Section10:NewButton("Bypassed loud song 2", "ButtonInfo", function()
     local soundId = "rbxassetid://6896624865" 
 
-local sound = Instance.new("Sound")
-sound.SoundId = soundId
-sound.Parent = game.Workspace -- You can parent it wherever you like
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
 
-sound:Play()
+    sound:Play()
 
-game:GetService("StarterGui"):SetCore("SendNotification", { 
-    Title = " song Loaded successfully";
-    Text = "Enjoy ";
-    Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
-    Duration = 10; -- set duration in seconds
-    Button1 = "IT DID LOAD";
-    Button2 = "IT DIDNT LOAD";
-    SoundId = "rbxassetid://1626996526"; -- replace 123456789 with the actual sound ID
-})
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; -- set duration in seconds
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
 end)
 Section10:NewButton("Bypassed loud song 3", "ButtonInfo", function()
     local soundId = "rbxassetid://8600104157" 
 
-local sound = Instance.new("Sound")
-sound.SoundId = soundId
-sound.Parent = game.Workspace -- You can parent it wherever you like
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
 
-sound:Play()
+    sound:Play()
 
-game:GetService("StarterGui"):SetCore("SendNotification", { 
-    Title = " song Loaded successfully";
-    Text = "Enjoy ";
-    Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
-    Duration = 10; -- set duration in seconds
-    Button1 = "IT DID LOAD";
-    Button2 = "IT DIDNT LOAD";
-    SoundId = "rbxassetid://1626996526"; -- replace 123456789 with the actual sound ID
-})
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; -- set duration in seconds
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
 end)
 Section10:NewButton("Bypassed loud song 4", "ButtonInfo", function()
     local soundId = "rbxassetid://6853070044" 
 
-local sound = Instance.new("Sound")
-sound.SoundId = soundId
-sound.Parent = game.Workspace -- You can parent it wherever you like
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
 
-sound:Play()
+    sound:Play()
 
-game:GetService("StarterGui"):SetCore("SendNotification", { 
-    Title = " song Loaded successfully";
-    Text = "Enjoy ";
-    Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
-    Duration = 10; -- set duration in seconds
-    Button1 = "IT DID LOAD";
-    Button2 = "IT DIDNT LOAD";
-    SoundId = "rbxassetid://1626996526"; -- replace 123456789 with the actual sound ID
-})
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; -- set duration in seconds
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
 end)
 Section10:NewButton("Bypassed loud song 5", "ButtonInfo", function()
     local soundId = "rbxassetid://9089453046" 
 
-local sound = Instance.new("Sound")
-sound.SoundId = soundId
-sound.Parent = game.Workspace -- You can parent it wherever you like
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
 
-sound:Play()
+    sound:Play()
 
-game:GetService("StarterGui"):SetCore("SendNotification", { 
-    Title = " song Loaded successfully";
-    Text = "Enjoy ";
-    Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
-    Duration = 10; -- set duration in seconds
-    Button1 = "IT DID LOAD";
-    Button2 = "IT DIDNT LOAD";
-    SoundId = "rbxassetid://1626996526"; -- replace 123456789 with the actual sound ID
-})
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; -- set duration in seconds
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
 end)
 Section10:NewButton("Bypassed loud song 6", "ButtonInfo", function()
     local soundId = "rbxassetid://7301188827" 
 
-local sound = Instance.new("Sound")
-sound.SoundId = soundId
-sound.Parent = game.Workspace -- You can parent it wherever you like
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
 
-sound:Play()
+    sound:Play()
 
-game:GetService("StarterGui"):SetCore("SendNotification", { 
-    Title = " song Loaded successfully";
-    Text = "Enjoy ";
-    Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
-    Duration = 10; -- set duration in seconds
-    Button1 = "IT DID LOAD";
-    Button2 = "IT DIDNT LOAD";
-    SoundId = "rbxassetid://1626996526"; -- replace 123456789 with the actual sound ID
-})
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; -- set duration in seconds
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
 end)
 Section10:NewButton("Bypassed loud song 7", "ButtonInfo", function()
     local soundId = "rbxassetid://6844230235" 
 
-local sound = Instance.new("Sound")
-sound.SoundId = soundId
-sound.Parent = game.Workspace -- You can parent it wherever you like
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.Workspace 
+    sound.Volume = volume / maxVolume
 
-sound:Play()
+    sound:Play()
 
-game:GetService("StarterGui"):SetCore("SendNotification", { 
-    Title = " song Loaded successfully";
-    Text = "Enjoy ";
-    Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
-    Duration = 10; -- set duration in seconds
-    Button1 = "IT DID LOAD";
-    Button2 = "IT DIDNT LOAD";
-    SoundId = "rbxassetid://1626996526"; -- replace 123456789 with the actual sound ID
-})
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+        Title = " song Loaded successfully";
+        Text = "Enjoy ";
+        Icon = "rbxthumb://type=Asset&id=11602284370&w=150&h=150";
+        Duration = 10; -- set duration in seconds
+        Button1 = "IT DID LOAD";
+        Button2 = "IT DIDNT LOAD";
+    })
 end)
+
+-- Settings
+
 local Tab7 = Window:NewTab("Settings/Options")
 local Section11 = Tab7:NewSection("Ui Options/Settings")
-Section11:NewColorPicker("Color Text", "Color Info", Color3.fromRGB(0,0,0), function(color)
-    print(color)
-    -- Second argument is the default color
-end)
 
+
+-- Credits
+
+local Tab8 = Window:NewTab("Credits")
+local Section12 = Tab8:NewSection("Credits ")
+Section12:NewLabel("Made By The BaconBlitz Team")
+Section12:NewButton("Join Our discord!", "Pls pls pls -flamingo", function()
+    setclipboard("https://discord.com/invite/KdJrj2nEy5")
+end)
+Section12:NewLabel("Most of the script was made by mowananann on roblox ")
+Section12:NewLabel("or Popkid_Dev on discord ")
+Section12:NewLabel("Fun Fact baconblitz team only has 2 devs")
+Section12:NewLabel("The devs are mowananann and outsideitrains who only ")
+Section12:NewLabel("Found songs")
+
+
+-- Open/close Gui
 
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "ScreenGui"
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ResetOnSpawn = false
 
+-- Define sound effects
 local firstClickSound = Instance.new("Sound")
 firstClickSound.Name = "FirstClickSound"
-firstClickSound.SoundId = "rbxassetid://474303247" -- Replace with your first sound ID
+firstClickSound.SoundId = "rbxassetid://907514098" -- Replace with your first sound ID
 firstClickSound.Parent = ScreenGui
 
 local secondClickSound = Instance.new("Sound")
 secondClickSound.Name = "SecondClickSound"
-secondClickSound.SoundId = "rbxassetid://474303247" -- Replace with your second sound ID
+secondClickSound.SoundId = "rbxassetid://907514098" -- Replace with your second sound ID
 secondClickSound.Parent = ScreenGui
 
+-- Create the logo ImageButton
+local Logo = Instance.new("ImageButton")
+Logo.Name = "Logo"
+Logo.Parent = ScreenGui
+Logo.BackgroundColor3 = Color3.new(1, 1, 1) -- White background
+Logo.BackgroundTransparency = 1 -- Fully transparent background
+Logo.Position = UDim2.new(0, 0, 0, 0) -- Top-left corner of the screen
+Logo.Size = UDim2.new(0, 50, 0, 50) -- Square size
+Logo.Image = "rbxassetid://YOUR_IMAGE_ID" -- Replace with your logo image asset ID
+
+-- Add rounded corners to the logo
+local Corner = Instance.new("UICorner")
+Corner.Name = "Corner"
+Corner.CornerRadius = UDim.new(0.1, 0) -- Rounded corners
+Corner.Parent = Logo
+
+-- Create the toggle button
 local Toggle = Instance.new("TextButton")
 Toggle.Name = "Toggle"
 Toggle.Parent = ScreenGui
 Toggle.BackgroundColor3 = Color3.new(0, 0, 0)
-Toggle.Position = UDim2.new(0, 0, 0.454706937, 0)
-Toggle.Size = UDim2.new(0, 50, 0, 50)
+Toggle.Position = UDim2.new(0, 0, 0.4547, 0) -- Position below the logo
+Toggle.Size = UDim2.new(0, 50, 0, 50) -- Square size
 Toggle.Text = "-"
 Toggle.TextColor3 = Color3.new(1, 1, 1)
 Toggle.TextScaled = true
@@ -479,8 +1691,10 @@ Toggle.Font = Enum.Font.SourceSans
 Toggle.ClipsDescendants = true
 Toggle.Draggable = true
 
+-- Define toggle state
 local isGuiOpen = true
 
+-- Toggle functionality with sounds
 Toggle.MouseButton1Click:Connect(function()
     if not Toggle:IsDescendantOf(game.Players.LocalPlayer:WaitForChild("PlayerGui")) then
         return
@@ -490,17 +1704,25 @@ Toggle.MouseButton1Click:Connect(function()
         firstClickSound:Play()
         Toggle.Text = "+"
         isGuiOpen = false
-        Library:ToggleUI() -- Assuming Library is defined elsewhere
+        -- Replace Library:ToggleUI() with the actual functionality you want
+        -- Library:ToggleUI() -- Assuming Library is defined elsewhere
         
     else
         secondClickSound:Play()
         Toggle.Text = "-"
         isGuiOpen = true
-        Library:ToggleUI() -- Assuming Library is defined elsewhere
+        -- Replace Library:ToggleUI() with the actual functionality you want
+        -- Library:ToggleUI() -- Assuming Library is defined elsewhere
     end
 end)
 
-local Corner = Instance.new("UICorner")
-Corner.Name = "Corner"
-Corner.CornerRadius = UDim.new(1, 0)
-Corner.Parent = Toggle
+-- Add rounded corners to the toggle button
+local CornerToggle = Instance.new("UICorner")
+CornerToggle.Name = "Corner"
+CornerToggle.CornerRadius = UDim.new(0.1, 0) -- Rounded corners
+CornerToggle.Parent = Toggle
+
+-- Destroy the script's parent Library, if defined
+if script.Parent then
+    script.Parent:Destroy()
+end
